@@ -54,7 +54,10 @@ public class Film extends AbstractModel<Long> {
             inverseJoinColumns = @JoinColumn(name = "PERSONNE_ID"))
 	private List<Personne> acteurs;
     
-    
+    //relation entre film et genre
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="GENRE_ID")
+    private Genre genre;
 
 
 
