@@ -2,6 +2,7 @@ package com.hendisantika.adminlte.service;
 
 
 import com.hendisantika.adminlte.model.AbstractModel;
+import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,5 +45,12 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
         T getEntity = getEntityOpt.get();
         getRepository().save(entity);
     }
+    
+    
+    public List<T> getListAll() {
+
+    	return getRepository().findAll();
+    }
+    
 
 }
