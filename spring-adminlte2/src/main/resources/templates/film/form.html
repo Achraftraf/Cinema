@@ -1,0 +1,168 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Add Film</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>Add Film</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+			<li class="active">Add Film</li>
+		</ol>
+	</section>
+	<div layout:fragment="content">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Form</h3>
+				<div class="box-tools pull-right">
+					<a href="/film" type="button" class="btn btn-box-tool"><i
+						class="fa fa-list-ul"></i></a>
+				</div>
+			</div>
+			<form data-toggle="validator" role="form" th:object="${film}"
+				th:action="@{/film/save}" method="post">
+				<div class="box-body">
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="form-group">
+						<label for="titre">Titre</label> <input type="text"
+							required="true" class="form-control" th:field="*{titre}"
+							id="titre" />
+					</div>
+					<div class="form-group">
+						<label for="annee">Année</label> <input type="text"
+							required="true" class="form-control" th:field="*{annee}"
+							id="annee" />
+					</div>
+					<div class="form-group">
+						<label for="duree">Durée</label> <input type="text"
+							required="true" class="form-control" th:field="*{duree}"
+							id="duree" />
+					</div>
+					<div class="form-group">
+						<label for="genre">Genre</label> <select required="true"
+							class="form-control" th:field="*{genre}">
+							<option value="">-- Selectionner Genre --</option>
+							<option th:each="genre : ${genres}" th:value="${genre}"
+								th:text="${genre.libelle}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="nationalite">Nationalité</label> <select
+							th:field="*{nationalite}">
+							<option value="">-- Selectionner Nationalité --</option>
+							<option th:each="nat : ${listeNationalites}" th:value="${nat.id}"
+								th:text="${nat.libelle}"
+								th:selected="(${nationalite} != null)?${nat.id} == ${nationalite.id} : false">
+							</option>
+						</select>
+					</div>
+
+
+
+
+					<!--<div class="form-group">
+						<label for="directeur">Directeur</label> <select
+							th:field="*{directeur}">
+							<option value="">-- Selectionner Nationalité --</option>
+							<option th:each="dir : ${listeDirecteurs}" th:value="${dir.id}"
+								th:text="${dir.libelle}"
+								th:selected="(${directeur} != null)?${dir.id} == ${directeur.id} : false">
+							</option>
+						</select>
+					</div>-->
+
+					<!-- 	<div class="form-group">
+						<label for="acteur">Acteur</label> <select
+							th:field="*{acteur}">
+							<option value="">-- Selectionner Acteur --</option>
+							Filter the list based on the type
+							<th:block
+								th:each="acteur : ${#lists.filter(listePersonnes, #root.type eq 'ACTEUR' ? #root.acteurFilter : #root.directeurFilter)}">
+								<option th:value="${acteur.id}" th:text="${acteur.nom}"
+									th:selected="${acteur.id == acteur.id}"></option>
+							</th:block>
+						</select>
+					</div>
+ -->
+					<!--<div class="form-group">
+    <label for="personne">Directeur</label>
+    <select th:field="*{personne}">
+        <option value="">-- Selectionner Directeur --</option>
+        <!-- Filter the list based on the type 
+        <th:block th:each="person : ${#lists.filter(listePersonnes, #root.type eq 'DIRECTEUR' ? #root.acteurFilter : #root.directeurFilter)}">
+            <option th:value="${person.id}"
+                    th:text="${person.nom}"
+                    th:selected="${person.id == personne.id}">
+            </option>
+        </th:block>
+    </select>
+</div>-->
+					<!-- 
+
+				<div class="form-group">
+						<label for="directeur">Directeurs/Acteurs</label> <select
+							th:field="*{directeur}">
+							<option value="">-- Selectionner Directeur/Acteurs --</option>
+							<option th:each="dir : ${listePersonnes}" th:value="${dir.id}"
+								th:text="${dir.nom}"
+								th:selected="(${directeur} != null)?${dir.id} == ${directeur.id} : false">
+							</option>
+						</select>
+					</div>
+ -->
+
+
+					<div class="form-group">
+						<label for="directeur">Directeurs/Acteurs</label> <select
+							th:field="*{directeur}">
+							<option value="">-- Selectionner Directeur/Acteurs --</option>
+							<option th:each="dir : ${listePersonnes}" th:value="${dir.id}"
+								th:text="${dir.nom}"
+								th:selected="(${directeur} != null)?${dir.id} == ${directeur.id} : false">
+							</option>
+						</select>
+					</div>
+
+					<!-- <div class="form-group">
+						<label for="acteur">Acteurs</label> <select th:field="*{acteur}">
+							<option value="">-- Sélectionner Acteur --</option>
+							<option th:each="personne : ${listePersonnes}"
+								th:if="${personne.type_personne} == 'ACTEUR'"
+								th:value="${personne.id}" th:text="${personne.nom}"
+								th:selected="(${acteur} != null) ? ${personne.id} == ${acteur.id} : false">
+							</option>
+						</select>
+					</div>
+					-->
+					<!--<div class="form-group">
+    <label for="directeur">Directeurs</label> 
+    <select th:field="*{directeur}">
+        <option value="">-- Sélectionner Directeur --</option>
+        <option th:each="personne : ${listePersonnes}" th:if="${personne.type_personne} == 'DIRECTEUR'"
+                th:value="${personne.id}" th:text="${personne.nom}"
+                th:selected="(${directeur} != null) ? ${personne.id} == ${directeur.id} : false">
+        </option>
+    </select>
+</div>
+ -->
+
+
+					<!--<div class="form-group">
+						<label for="acteur">Acteurs</label>
+						 <select th:field="*{acteur}">
+							<option value="">-- Selectionner Acteur --</option>
+							<option th:each="act : ${listePersonnes}" th:value="${act.id}"
+								th:text="${act.nom}"
+								th:selected="(${acteur} != null)?${act.id} == ${acteur.id} : false">
+							</option>
+						</select>
+					</div>-->
+			</form>
+		</div>
+	</div>
+</body>
+</html>
