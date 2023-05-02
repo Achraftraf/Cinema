@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Séances</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>Séances</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+			<li class="active">Séances</li>
+		</ol>
+	</section>
+	<div layout:fragment="content">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Lists</h3>
+				<div class="box-tools pull-right">
+					<a href="/seances/add" type="button" class="btn btn-box-tool"><i
+						class="fa fa-plus"></i></a> <br clear="all" />
+				</div>
+			</div>
+			<div class="box-body no-padding">
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Date Projection</th>
+						<th>Heure Debut</th>
+						<th>Heure Fin</th>
+					</tr>
+					<tr th:each="row : ${list}">
+						<td th:text="${row.id}"></td>
+						<td th:text="${row.date_projection}"></td>
+						<td th:text="${row.heure_fin}"></td>
+						<td th:text="${row.heure_debut}"></td>
+
+						<td><a th:href="${'/seances/edit/' + row.id}">Edit</a> | <a
+							th:href="${'/seances/delete/' + row.id}">Delete</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="box-footer clearfix">
+				<ul class="pagination pagination-sm no-margin pull-right">
+					<li><a href="/seances/1">First</a></li>
+					<li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
+						th:class="${p == currentIndex} ? 'active' : ''"><a
+						th:href="${'/seances/' + p}" th:text="${p}"></a></li>
+					<li><a th:href="${'/seances/' + endIndex}">Last</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
