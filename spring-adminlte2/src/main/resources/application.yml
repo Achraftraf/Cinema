@@ -43,12 +43,7 @@ spring:
     livereload:
       enabled: true
     add-properties: true
-    springdoc:
-    api-docs:
-      path: /api-docs
-    swagger-ui:
-      path: /swagger-ui.html
-      enabled: true
+
   resources:
     static-locations: file:src/main/resources/static/
     #    static-locations: ${project.basedir}/src/main/resources/static/
@@ -73,7 +68,12 @@ server:
       cookie:
         http-only: true
 #        secure: true
-
+springdoc:
+   api-docs:
+      path: /api-docs
+   swagger-ui:
+      path: /swagger-ui.html
+      enabled: true
 # 1 days = 1 * 24 * 60 * 60
 cookie:
   maxAge: 86400
