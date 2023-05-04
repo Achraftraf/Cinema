@@ -41,7 +41,7 @@ public class SalleController {
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
 
-        model.addAttribute("list", page);
+        model.addAttribute("listSalles", page);
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
@@ -94,4 +94,3 @@ public class SalleController {
     }
 
 }
-
