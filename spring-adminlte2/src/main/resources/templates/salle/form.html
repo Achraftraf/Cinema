@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Registration Client</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>Ajouter/Modifier une Salle</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Ajouter/Modifier une Salle</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Formulaire d'ajout/Modification</h3>
+            <div class="box-tools pull-right">
+                <a href="/personne" type="button" class="btn btn-box-tool"><i class="fa fa-list-ul"></i></a>
+            </div>
+        </div>
+        <form data-toggle="validator" role="form" th:object="${salle}" th:action="@{/salle/save}" method="post">
+            <div class="box-body">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="form-group">
+                    <label for="Numero">Numéro</label>
+                    <input type="text" required="true" class="form-control" th:field="*{numero}" id="Numero" />
+                </div>
+                <div class="form-group">
+                    <label for="Capacite">Capacité</label>
+                    <input type="text" required="true" class="form-control" th:field="*{capacite}" id="Capacite" />
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary" type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
