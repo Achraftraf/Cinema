@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("genres")
+@RequestMapping("genre")
 public class GenreController {
 
     private GenreService genreService;
@@ -30,7 +30,7 @@ public class GenreController {
 
     @GetMapping
     public String index() {
-        return "redirect:/genres/1";
+        return "redirect:/genre/1";
     }
 
     @GetMapping(value = "/{pageNumber}")
@@ -48,7 +48,7 @@ public class GenreController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
-        return "genres/list";
+        return "genre/list";
 
     }
 
@@ -56,7 +56,7 @@ public class GenreController {
     public String add(Model model) {
 
         model.addAttribute("genre", new Genre());
-        return "genres/form";
+        return "genre/form";
         
 
     }
@@ -65,7 +65,7 @@ public class GenreController {
     public String edit(@PathVariable Long id, Model model) {
 
         model.addAttribute("genre", genreService.get(id));
-        return "genres/form";
+        return "genre/form";
 
     }
 
@@ -74,7 +74,7 @@ public class GenreController {
 
         Genre save = genreService.save(genre);
         ra.addFlashAttribute("successFlash", "Genre has been saved successfully.");
-        return "redirect:/genres";
+        return "redirect:/genre";
 
     }
 
@@ -82,7 +82,7 @@ public class GenreController {
     public String delete(@PathVariable Long id) {
 
         genreService.delete(id);
-        return "redirect:/genres";
+        return "redirect:/genre";
 
     }
     

@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
-    <title>Media</title>
+    <title>Genre</title>
 </head>
 <body>
 <section layout:fragment="header">
-    <h1>Media</h1>
+    <h1>Genre</h1>
 <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li class="active">Media</li>
+    <li class="active">Genre</li>
 </ol>
 </section>
 <div layout:fragment="content">
@@ -17,7 +17,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Lists</h3>
             <div class="box-tools pull-right">
-                <a href="/media/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <a href="/genre/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
                 <br clear="all" />
             </div>
         </div>
@@ -25,27 +25,25 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Added date</th>
-                    <th>Media</th>
+                    <th>Libelle</th>
                 </tr>
                 <tr th:each="row : ${list}">
                     <td th:text="${row.id}"></td>
-                    <td th:text="${row.added_date}"></td>
-                    <td th:text="${row.media}"></td>
+                    <td th:text="${row.libellee}"></td>
                     <td>
-                        <a th:href="${'/media/edit/' + row.id}">Edit</a> |
-                        <a th:href="${'/media/delete/' + row.id}">Delete</a>
+                        <a th:href="${'/genre/edit/' + row.id}">Edit</a> |
+                        <a th:href="${'/genre/delete/' + row.id}">Delete</a>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="/media/1">First</a></li>
+                <li><a href="/genre/1">First</a></li>
                 <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}" th:class="${p == currentIndex} ? 'active' : ''">
-                    <a th:href="${'/media/' + p}" th:text="${p}"></a>
+                    <a th:href="${'/genre/' + p}" th:text="${p}"></a>
                 </li>
-                <li><a th:href="${'/media/' + endIndex}">Last</a></li>
+                <li><a th:href="${'/genre/' + endIndex}">Last</a></li>
             </ul>
         </div>
     </div>
