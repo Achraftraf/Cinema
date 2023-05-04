@@ -24,8 +24,8 @@ public class Salle extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "added_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp added_date;
+    @Column(name = "added_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Date addedDate;
     
     @Column(nullable = false, length = 50)
 	private int capacite;
